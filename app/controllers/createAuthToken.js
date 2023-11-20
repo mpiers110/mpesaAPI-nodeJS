@@ -11,7 +11,6 @@ const createToken = async (req, res, next)=>{
         }
     })
     .then((data)=>{
-        console.log(data.data);
         token = data.data.access_token;        
         next()
     })
@@ -23,7 +22,7 @@ const createToken = async (req, res, next)=>{
 
 const stkPush = async (req, res,)=>{
     const timestamp = moment().format('YYYYMMDDHHmmss')
-    const phoneNumber = req.body.phoneNumber.substring(1);
+    const phoneNumber = await req.body.phoneNumber && req.body.phoneNumber.substring(1);
     const amount = req.body.amount;
     const password = new Buffer.from(process.env.MPESA_API_BUSINESS_SHORTCODE + process.env.MPESA_API_PASSKEY + timestamp).toString("base64")
     const requestBody = {    

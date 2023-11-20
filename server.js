@@ -4,7 +4,6 @@ const cors = require("cors");
 require('dotenv').config()
 const app = express();
 
-const authRoutes = require('./routes/authTokens.routes');
 const transactionRoutes = require('./routes/transactions.routes');
 const paymentRoutes = require('./routes/payment.routes');
 
@@ -17,11 +16,13 @@ app.get('/api/v1', (req, res) => {
 	res.send('Hello NectarISP Backend');
 })
 /*CALLBACK_URL*/
-app.get('/api/v1/callbackURL', (req, res) => {
-	res.send('This is the callbackURL');
+app.post('/api/v1/callbackURL', (req, res) => {
+    const callBackData = req.body;
+    if(callBackData){
+        console.log(callBackData)
+    }
 })
-/*AUTHENTICATION*/
-//app.use('/api/v1/auth', authRoutes);
+
 /*PAYMENT*/
 app.use('/api/v1/payments', paymentRoutes);
 /*TRANSACTIONS*/
