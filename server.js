@@ -15,15 +15,9 @@ app.use(cors());
 app.get('/api/v1', (req, res) => {
 	res.send('Hello NectarISP Backend');
 })
-/*CALLBACK_URL*/
-app.post('/api/v1/callbackURL', (req, res) => {
-    const callBackData = req.body;
-    if(callBackData){
-        console.log(callBackData)
-    }
-})
 
-/*PAYMENT*/
+
+/*PAYMENTS*/
 app.use('/api/v1/payments', paymentRoutes);
 /*TRANSACTIONS*/
 app.use('/api/v1/transactions', transactionRoutes);
@@ -32,8 +26,8 @@ app.use('/api/v1/transactions', transactionRoutes);
 mongoose.connect(process.env.DATABASE_URL)
 .then(()=>{
 	console.log('Connected to database')
-	app.listen(process.env.PORT, () => {
-		console.log(`NectarISP backend is running on port ${process.env.PORT}`);
+	app.listen(process.env.SERVER_PORT, () => {
+		console.log(`NectarISP backend is running on port ${process.env.SERVER_PORT}`);
 	})
 }).catch((error) => {
     console.error(error);
