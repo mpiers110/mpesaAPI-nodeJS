@@ -54,16 +54,6 @@ router.post('/addTransaction', async (req, res) => {
       res.status(500).send('Server Error');
     }
 });
-//DeleteAll
-router.delete('/deleteAllTransactions', async (req, res) => {
-    try {
-      await Transaction.deleteMany();
-      res.status(200).json({ message: 'All transactions deleted successfully' });
-    } catch (error) {
-      console.error(error.message);
-      res.status(500).send('Server Error');
-    }
-});
 //DeleteByID
 router.delete('/deleteById/:id', async (req, res) => {
     try {
