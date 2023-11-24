@@ -27,14 +27,14 @@ router.post('/callbackURL', async(req, res) => {
   try {
     const callBackData = req.body;
     console.log(callBackData?.Body)
-    if(!callBackData.Body.stkCallback.CallBackMetadata){
+    if(!callBackData.Body.stkCallback.CallbackMetadata){
       console.log(callBackData.Body)
       return res.json("OK")
     }
-    console.log(callBackData.Body.stkCallback.CallBackMetadata)
-    const phoneNumber = callBackData.Body.stkCallback.CallBackMetadata?.Item[4]?.Value;
-    const transactionID = callBackData.Body.stkCallback.CallBackMetadata?.Item[1]?.Value;;
-    const amount = callBackData.Body.stkCallback.CallBackMetadata?.Item[0]?.Value;
+    console.log(callBackData.Body.stkCallback.CallbackMetadata)
+    const phoneNumber = callBackData.Body.stkCallback.CallbackMetadata?.Item[4]?.Value;
+    const transactionID = callBackData.Body.stkCallback.CallbackMetadata?.Item[1]?.Value;;
+    const amount = callBackData.Body.stkCallback.CallbackMetadata?.Item[0]?.Value;
 
     // Create a new transaction
     const newTransaction = new Transaction({
