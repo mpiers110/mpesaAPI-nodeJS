@@ -30,6 +30,18 @@ router.get('/getTransaction/:id', async (req, res) => {
       res.status(500).json({ message: 'Internal Server Error' });
     }
 });
+//getByphoneNumber
+router.get('/findByPhone/:phoneNumber', async (req, res) => {
+  const { phoneNumber } = req.params;
+
+  try {
+    const result = await Transaction.find({ phoneNumber: +phoneNumber });
+    res.json(result);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'No transactions with the phoneNumber found' });
+  }
+});
 //addTransaction
 router.post('/addTransaction', async (req, res) => {
     try {
