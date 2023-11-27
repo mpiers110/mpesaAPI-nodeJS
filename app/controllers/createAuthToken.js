@@ -24,6 +24,7 @@ const stkPush = async (req, res,)=>{
     const timestamp = moment().format('YYYYMMDDHHmmss')
     const phoneNumber = await req.body.phoneNumber && req.body.phoneNumber.substring(1);
     const amount = req.body.amount;
+    const accountReference = req.body.accountReference;
     const password = new Buffer.from(process.env.MPESA_API_BUSINESS_SHORTCODE + process.env.MPESA_API_PASSKEY + timestamp).toString("base64")
     const requestBody = {    
         "BusinessShortCode": process.env.MPESA_API_BUSINESS_SHORTCODE,    
@@ -35,7 +36,7 @@ const stkPush = async (req, res,)=>{
         "PartyB": process.env.MPESA_API_BUSINESS_SHORTCODE,    
         "PhoneNumber":`254${phoneNumber}`,    
         "CallBackURL": process.env.CALLBACK_URL,    
-        "AccountReference":`254${phoneNumber}`,    
+        "AccountReference": accountReference,    
         "TransactionDesc":"Test"
     }
     await axios.post(process.env.MPESA_API_STKPUSH_REQUEST_URL, requestBody, {
