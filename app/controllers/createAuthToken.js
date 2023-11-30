@@ -35,7 +35,7 @@ const stkPush = async (req, res,)=>{
         "PartyA": `254${phoneNumber}`,    
         "PartyB": process.env.MPESA_API_BUSINESS_SHORTCODE,    
         "PhoneNumber":`254${phoneNumber}`,    
-        "CallBackURL": process.env.CALLBACK_URL,    
+        "CallBackURL": `${process.env.CALLBACK_URL}?accRef=${encodeURIComponent(accountReference)}`,    
         "AccountReference": accountReference,    
         "TransactionDesc":"Test"
     }
