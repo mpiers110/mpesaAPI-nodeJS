@@ -42,6 +42,18 @@ router.get('/findByPhone/:phoneNumber', async (req, res) => {
     res.status(500).json({ error: 'No transactions with the phoneNumber found' });
   }
 });
+//getByaccountReference
+router.get('/findByaccountReference/:accRef', async (req, res) => {
+  const { accRef } = req.params;
+
+  try {
+    const result = await Transaction.find({ accountReference: +accRef });
+    res.json(result);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'No transactions with the accountReference found' });
+  }
+});
 //addTransaction
 router.post('/addTransaction', async (req, res) => {
     try {
