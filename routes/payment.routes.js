@@ -29,8 +29,9 @@ router.post('/callbackURL', async(req, res) => {
     if(!callBackData.Body.stkCallback.CallbackMetadata){
       return res.json("OK")
     }
+    console.log(callBackData.Body.stkCallback.CallbackMetadata)
     await res.status(200).json(callBackData.Body.stkCallback.CallbackMetadata)
-    const phoneNumber = callBackData.Body.stkCallback.CallbackMetadata?.Item[4]?.Value;
+    /*const phoneNumber = callBackData.Body.stkCallback.CallbackMetadata?.Item[4]?.Value;
     const transactionID = callBackData.Body.stkCallback.CallbackMetadata?.Item[1]?.Value;;
     const amount = callBackData.Body.stkCallback.CallbackMetadata?.Item[0]?.Value;
 
@@ -43,7 +44,7 @@ router.post('/callbackURL', async(req, res) => {
 
     // Save the transaction to the database
     await newTransaction.save();
-
+*/
     //res.status(201).json(newTransaction);
   } catch (error) {
     console.error(error.message);
