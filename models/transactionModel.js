@@ -13,6 +13,10 @@ const transactionSchema = mongoose.Schema(
     "amount": {
       type: Number,
       required: [true, `Amount is required`]
+    },
+    "accountReference": {
+      type: String,
+      required: true
     }
   },
   {
