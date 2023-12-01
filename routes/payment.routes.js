@@ -27,6 +27,7 @@ router.post('/callbackURL', async(req, res) => {
   try {
     const callBackData = req.body;
     if(!callBackData.Body.stkCallback.CallbackMetadata){
+      console.log(callBackData)
       return res.json("OK")
     }
     console.log(`CALLBACKdata-->${callBackData.Body.stkCallback.CallbackMetadata}`)
