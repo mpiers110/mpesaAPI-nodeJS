@@ -52,6 +52,17 @@ router.post('/callbackURL', async(req, res) => {
   }
 
 });
+/*/getdebugData
+router.post('/debug-data', async(req, res) => {
+  try{
+    const debugData = req.body;
+    const newdebugData = new Transaction(debugData);
+    await newdebugData.save();
+    res.status(201).json(newdebugData);
+  }catch (err) {
+    console.error(err)
+  }
+})
 /*router.post('/transactions/addTransaction', async (req, res) => {
     try {
       const { password, driverName, driverContact, driverNationalID, assignedGroup, drivingLicense } = req.body;
