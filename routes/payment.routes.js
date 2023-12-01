@@ -29,21 +29,21 @@ router.post('/callbackURL', async(req, res) => {
     if(!callBackData.Body.stkCallback.CallbackMetadata){
       return res.json("OK")
     }
+    console.log(`CALLBACKdata-->${callBackData.Body.stkCallback.CallbackMetadata}`)
     const phoneNumber = callBackData.Body.stkCallback.CallbackMetadata?.Item[4]?.Value;
     const transactionID = callBackData.Body.stkCallback.CallbackMetadata?.Item[1]?.Value;;
     const amount = callBackData.Body.stkCallback.CallbackMetadata?.Item[0]?.Value;
-    //const accountReference = req.query.accRef;
 
     // Create a new transaction
     const newTransaction = new Transaction({
       phoneNumber,
       transactionID,
-      amount
+      amount,
     });
 
     // Save the transaction to the database
     await newTransaction.save();
-    
+
     res.status(201).json(newTransaction);
   } catch (error) {
     console.error(error.message);
@@ -51,17 +51,6 @@ router.post('/callbackURL', async(req, res) => {
   }
 
 });
-/*/getdebugData
-router.post('/debug-data', async(req, res) => {
-  try{
-    const debugData = req.body;
-    const newdebugData = new Transaction(debugData);
-    await newdebugData.save();
-    res.status(201).json(newdebugData);
-  }catch (err) {
-    console.error(err)
-  }
-})
 /*router.post('/transactions/addTransaction', async (req, res) => {
     try {
       const { password, driverName, driverContact, driverNationalID, assignedGroup, drivingLicense } = req.body;
