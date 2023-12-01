@@ -46,7 +46,6 @@ const stkPush = async (req, res,)=>{
     })
     .then((data)=>{
         console.log(data.data)
-        //await axios.post('https://nectarisp-backend.onrender.com/api/v1/payments/debug-data', data.data);
     })
     .catch((error)=>{
         console.error(error)

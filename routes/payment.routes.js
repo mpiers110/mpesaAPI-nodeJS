@@ -30,16 +30,18 @@ router.post('/callbackURL', async(req, res) => {
       console.log(callBackData)
       return res.json("OK")
     }
-    console.log(`CALLBACKdata-->${callBackData.Body.stkCallback.CallbackMetadata}`)
+    console.log(`CALLBACKdata-->${callBackData.Body.stkCallback.CallbackMetadata?.Item}`)
     const phoneNumber = callBackData.Body.stkCallback.CallbackMetadata?.Item[4]?.Value;
     const transactionID = callBackData.Body.stkCallback.CallbackMetadata?.Item[1]?.Value;;
     const amount = callBackData.Body.stkCallback.CallbackMetadata?.Item[0]?.Value;
+    const accRef = req.query.param;
 
     // Create a new transaction
     const newTransaction = new Transaction({
       phoneNumber,
       transactionID,
       amount,
+      accRef,
     });
 
     // Save the transaction to the database
